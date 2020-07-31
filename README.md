@@ -1,10 +1,8 @@
 # TTProgressHUD
 
-`TTProgressHUD` is a light weight HUD written in SwiftUI meant to display the progress of an ongoing task on iOS. 
+`TTProgressHUD` is a light weight HUD written in SwiftUI meant to display the progress of an ongoing task on iOS. `TTProgressHUD` (left) was designed to look as similar as possible to the Apple HUD (example from Podcast.app, right).
 
 <img src="https://raw.githubusercontent.com/honkmaster/TTProgressHUD/master/Sample.jpg" width="500">
-
-`TTProgressHUD` (left) was designed to look as similar as possible to the Apple HUD (example from Podcast.app, right).
 
 ## Installation
 
@@ -28,7 +26,7 @@ Drag `TTProgressHUD.swift` and `TTProgressHUDConfig.swift` into your project.
 Import the `TTProgressHUD`  package: 
 
 ```swift
-import TTGaugeView
+import TTProgressHUD
 ```
 
 ### Instantiate and show the HUD view
@@ -84,7 +82,7 @@ public init(type:TTProgressHUDType         = .Loading,
 
 ## Contributing to this project
 
-If you have feature requests or bug reports, feel free to help out by sending pull requests or by [creating new issues](https://github.com/honkmaster/TTGaugeView/issues/new). Please take a moment to
+If you have feature requests or bug reports, feel free to help out by sending pull requests or by [creating new issues](https://github.com/honkmaster/TTProgressHUD/issues/new). Please take a moment to
 review the guidelines written by [Nicolas Gallagher](https://github.com/necolas):
 
 * [Bug reports](https://github.com/necolas/issue-guidelines/blob/master/CONTRIBUTING.md#bugs)
@@ -93,8 +91,8 @@ review the guidelines written by [Nicolas Gallagher](https://github.com/necolas)
 
 ## License
 
-`TTGaugeView` is distributed under the terms and conditions of the [MIT license](hhttps://github.com/honkmaster/TTGaugeView/blob/master/LICENSE).
+`TTProgressHUD` is distributed under the terms and conditions of the [MIT license](hhttps://github.com/honkmaster/TTGaugeView/blob/master/LICENSE).
 
 ## Credits
 
-`TTProgressHUD` is brought to you by [Tobias Tiemerding](http://tiemerding.com) and based on [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD). If you're using `TTGaugeView` in your project, attribution would be very appreciated.
+`TTProgressHUD` is brought to you by [Tobias Tiemerding](http://tiemerding.com) and based on [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD). If you're using `TTProgressHUD` in your project, attribution would be very appreciated.
