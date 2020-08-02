@@ -77,8 +77,8 @@ public init(type:TTProgressHUDType         = .Loading,
 `TTProgressHUD` will automatically trigger haptic feedback depending on which HUD is being displayed. The feedback maps as follows:
 
 * `TTProgressHUDType.Success` <-> `UINotificationFeedbackTypeSuccess`
-* `TTProgressHUDType.Error` <-> `UINotificationFeedbackTypeWarning`
-* `TTProgressHUDType.Warning` <-> `UINotificationFeedbackTypeError`
+* `TTProgressHUDType.Warning` <-> `UINotificationFeedbackTypeWarning`
+* `TTProgressHUDType.Error` <-> `UINotificationFeedbackTypeError`
 
 ## Contributing to this project
 
