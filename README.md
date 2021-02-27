@@ -10,7 +10,7 @@ Xcode 11 and iOS 13 is required.
 
 ### Swift Package Manager
 
-* Xcode: File -> Swift Packages -> Add Package Dependenc
+* Xcode: File -> Swift Packages -> Add Package Dependency
 * Paste https://github.com/honkmaster/TTProgressHUD
 
 ### Manually
@@ -48,37 +48,39 @@ struct ContentView: View {
 The default values were chosen so that `TTProgressHUD` looks as similar as possible to the Apple HUD.
 
 ```swift
-public init(type:TTProgressHUDType         = .Loading,
-            title:String?                  = nil,
-            caption:String?                = nil,
-            minSize:CGSize                 = CGSize(width: 100.0, height: 100.0),
-            cornerRadius:CGFloat           = 12.0,
-            backgroundColor:Color          = .clear,
-            titleForegroundColor:Color     = .primary,
-            captionForegroundColor:Color   = .secondary,
-            shadowColor:Color              = .clear,
-            shadowRadius:CGFloat           = 0.0,
-            borderColor:Color              = .clear,
-            borderWidth:CGFloat            = 0.0,
-            lineWidth:CGFloat              = 10.0,
-            imageViewSize:CGSize           = CGSize(width: 100, height: 100), // indefinite animated view and image share the size
-            imageViewForegroundColor:Color = .primary,                        // indefinite animated view and image share the color
-            successImage:String            = "checkmark.circle",
-            warningImage:String            = "exclamationmark.circle",
-            errorImage:String              = "xmark.circle",
-            shouldAutoHide:Bool            = false,
-            allowTapToHide:Bool            = false,
-            autoHideInterval: TimeInterval = 10.0,
-            hapticsEnabled:Bool            = true){...}
+public init(
+    type:TTProgressHUDType         = .loading,
+    title:String?                  = nil,
+    caption:String?                = nil,
+    minSize:CGSize                 = CGSize(width: 100.0, height: 100.0),
+    cornerRadius:CGFloat           = 12.0,
+    backgroundColor:Color          = .clear,
+    titleForegroundColor:Color     = .primary,
+    captionForegroundColor:Color   = .secondary,
+    shadowColor:Color              = .clear,
+    shadowRadius:CGFloat           = 0.0,
+    borderColor:Color              = .clear,
+    borderWidth:CGFloat            = 0.0,
+    lineWidth:CGFloat              = 10.0,
+    imageViewSize:CGSize           = CGSize(width: 100, height: 100),
+    imageViewForegroundColor:Color = .primary,        
+    successImage:String            = "checkmark.circle",
+    warningImage:String            = "exclamationmark.circle",
+    errorImage:String              = "xmark.circle",
+    shouldAutoHide:Bool            = false,
+    allowTapToHide:Bool            = false,
+    autoHideInterval: TimeInterval = 10.0,
+    hapticsEnabled:Bool            = true
+){...}
 ```
 
 ## Haptic Feedback
 
 `TTProgressHUD` will automatically trigger haptic feedback depending on which HUD is being displayed. The feedback maps as follows:
 
-* `TTProgressHUDType.Success` <-> `UINotificationFeedbackTypeSuccess`
-* `TTProgressHUDType.Warning` <-> `UINotificationFeedbackTypeWarning`
-* `TTProgressHUDType.Error` <-> `UINotificationFeedbackTypeError`
+* `TTProgressHUDType.success` <-> `UINotificationFeedbackTypeSuccess`
+* `TTProgressHUDType.warning` <-> `UINotificationFeedbackTypeWarning`
+* `TTProgressHUDType.error` <-> `UINotificationFeedbackTypeError`
 
 ## Contributing to this project
 

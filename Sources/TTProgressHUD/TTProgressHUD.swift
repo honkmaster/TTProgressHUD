@@ -9,29 +9,29 @@ import SwiftUI
 import SwiftUIVisualEffects
 
 public enum TTProgressHUDType {
-    case Loading
-    case Success
-    case Warning
-    case Error
+    case loading
+    case success
+    case warning
+    case error
 }
 
-struct IndefiniteAnimatedView: View {
+private struct IndefiniteAnimatedView: View {
     var animatedViewSize: CGSize
-    var animatedViewForegroundColor:Color
-    
+    var animatedViewForegroundColor: Color
+
     var lineWidth: CGFloat
-    
+
     @State private var isAnimating = false
-    
+
     private var foreverAnimation: Animation {
         Animation.linear(duration: 2.0)
             .repeatForever(autoreverses: false)
     }
-    
+
     var body: some View {
         let gradient = Gradient(colors: [animatedViewForegroundColor, .clear])
         let radGradient = AngularGradient(gradient: gradient, center: .center, angle: .degrees(-5))
-        
+
         Circle()
             .trim(from: 0.0, to: 0.97)
             .stroke(style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
@@ -40,35 +40,39 @@ struct IndefiniteAnimatedView: View {
             .rotationEffect(Angle(degrees: self.isAnimating ? 360 : 0.0))
             .animation(self.isAnimating ? foreverAnimation : .default)
             .padding(lineWidth/2)
-            .onAppear { self.isAnimating = true }
-            .onDisappear { self.isAnimating = false }
+            .onAppear {
+                self.isAnimating = true
+            }
+            .onDisappear {
+                self.isAnimating = false
+            }
     }
 }
 
-struct ImageView: View {
+private struct ImageView: View {
     var type: TTProgressHUDType
-    
-    var imageViewSize:CGSize
-    var imageViewForegroundColor:Color
-    
+
+    var imageViewSize: CGSize
+    var imageViewForegroundColor: Color
+
     var successImage: String
     var warningImage: String
     var errorImage: String
 
     var body: some View {
-        imageForHUDType()!
+        imageForHUDType?
             .resizable()
             .frame(width: imageViewSize.width, height: imageViewSize.height)
             .foregroundColor(imageViewForegroundColor.opacity(0.8))
     }
-    
-    func imageForHUDType() -> Image? {
+
+    var imageForHUDType: Image? {
         switch type {
-        case .Success:
+        case .success:
             return Image(systemName: successImage)
-        case .Warning:
+        case .warning:
             return Image(systemName: warningImage)
-        case .Error:
+        case .error:
             return Image(systemName: errorImage)
         default:
             return nil
@@ -76,27 +80,26 @@ struct ImageView: View {
     }
 }
 
-struct LabelView: View {
-    var title:String?
-    var caption:String?
-    
+private struct LabelView: View {
+    var title: String?
+    var caption: String?
+
     var body: some View {
         VStack(spacing: 4) {
             if let title = title {
                 Text(title)
                     .font(.system(size: 21.0, weight: .semibold))
-                    .multilineTextAlignment(.center)
                     .lineLimit(1)
                     .foregroundColor(.primary)
             }
             if let caption = caption {
                 Text(caption)
-                    .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .font(.headline)
                     .foregroundColor(.secondary)
             }
         }
+        .multilineTextAlignment(.center)
         .vibrancyEffect()
         .vibrancyEffectStyle(.fill)
     }
@@ -105,30 +108,30 @@ struct LabelView: View {
 public struct TTProgressHUD: View {
     @Binding var isVisible: Bool
     var config: TTProgressHUDConfig
-    
-    @Environment(\.colorScheme) var colorScheme
-    
-    public init(_ isVisible:Binding<Bool>, config: TTProgressHUDConfig){
+
+    @Environment(\.colorScheme) private var colorScheme
+
+    public init(_ isVisible: Binding<Bool>, config: TTProgressHUDConfig) {
         self._isVisible = isVisible
         self.config = config
     }
-    
+
     public var body: some View {
         let hideTimer = Timer.publish(every: config.autoHideInterval, on: .main, in: .common).autoconnect()
-        
+
         GeometryReader { geometry in
-            ZStack{
+            ZStack {
                 if isVisible {
                     config.backgroundColor
                         .edgesIgnoringSafeArea(.all)
-                    
+
                     ZStack {
                         Color.white
                             .blurEffect()
                             .blurEffectStyle(.systemChromeMaterial)
-                        
+
                         VStack(spacing: 20) {
-                            if config.type == .Loading {
+                            if config.type == .loading {
                                 IndefiniteAnimatedView(animatedViewSize: config.imageViewSize,
                                                        animatedViewForegroundColor: config.imageViewForegroundColor,
                                                        lineWidth: config.lineWidth)
@@ -144,21 +147,19 @@ public struct TTProgressHUD: View {
                         }.padding()
                     }
                     .overlay(
-                        // Fix reqired since .border can not be used with
+                        // Fix required since .border can not be used with
                         // RoundedRectangle clip shape
                         RoundedRectangle(cornerRadius: config.cornerRadius)
                             .stroke(config.borderColor, lineWidth: config.borderWidth)
                     )
-                    .clipShape(RoundedRectangle(cornerRadius: config.cornerRadius))
                     .aspectRatio(1, contentMode: .fit)
                     .padding(geometry.size.width / 7)
                     .shadow(color: config.shadowColor, radius: config.shadowRadius)
                 }
-                
             }
             .animation(.spring())
             .onTapGesture {
-                if config.allowTapToHide {
+                if config.allowsTapToHide {
                     withAnimation {
                         isVisible = false
                     }
@@ -173,24 +174,24 @@ public struct TTProgressHUD: View {
                 // Only one call required
                 hideTimer.upstream.connect().cancel()
             }
-            .onAppear(){
+            .onAppear {
                 if config.hapticsEnabled {
-                    generateHapticNotification(for: .Success)
+                    generateHapticNotification(for: config.type)
                 }
             }
         }
     }
-    
+
     func generateHapticNotification(for type: TTProgressHUDType) {
         let generator = UINotificationFeedbackGenerator()
         generator.prepare()
-        
+
         switch type {
-        case .Success:
+        case .success:
             generator.notificationOccurred(.success)
-        case .Warning:
+        case .warning:
             generator.notificationOccurred(.warning)
-        case .Error:
+        case .error:
             generator.notificationOccurred(.error)
         default:
             return
