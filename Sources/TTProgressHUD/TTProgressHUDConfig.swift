@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct TTProgressHUDConfig
+public struct TTProgressHUDConfig: Hashable
 {
     var type = TTProgressHUDType.Loading
     var title:String?
@@ -101,5 +101,12 @@ public struct TTProgressHUDConfig
         self.autoHideInterval = autoHideInterval
         
         self.hapticsEnabled = hapticsEnabled
+    }
+}
+
+extension CGSize: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(width)
+        hasher.combine(height)
     }
 }
