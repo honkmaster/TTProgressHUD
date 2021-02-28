@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  CGSize+Hashable.swift
+//  TTProgressHUD
 //
 //  Created by Tobias Tiemerding on 27.02.21.
 //
