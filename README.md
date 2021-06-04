@@ -48,29 +48,30 @@ struct ContentView: View {
 The default values were chosen so that `TTProgressHUD` looks as similar as possible to the Apple HUD.
 
 ```swift
+
 public init(
-    type:TTProgressHUDType         = .loading,
-    title:String?                  = nil,
-    caption:String?                = nil,
-    minSize:CGSize                 = CGSize(width: 100.0, height: 100.0),
-    cornerRadius:CGFloat           = 12.0,
-    backgroundColor:Color          = .clear,
-    titleForegroundColor:Color     = .primary,
-    captionForegroundColor:Color   = .secondary,
-    shadowColor:Color              = .clear,
-    shadowRadius:CGFloat           = 0.0,
-    borderColor:Color              = .clear,
-    borderWidth:CGFloat            = 0.0,
-    lineWidth:CGFloat              = 10.0,
-    imageViewSize:CGSize           = CGSize(width: 100, height: 100),
-    imageViewForegroundColor:Color = .primary,        
-    successImage:String            = "checkmark.circle",
-    warningImage:String            = "exclamationmark.circle",
-    errorImage:String              = "xmark.circle",
-    shouldAutoHide:Bool            = false,
-    allowTapToHide:Bool            = false,
-    autoHideInterval: TimeInterval = 10.0,
-    hapticsEnabled:Bool            = true
+    type: TTProgressHUDType         = .loading,
+    title: String?                  = nil,
+    caption: String?                = nil,
+    minSize: CGSize                 = CGSize(width: 100.0, height: 100.0),
+    cornerRadius: CGFloat           = 12.0,
+    backgroundColor: Color          = .clear,
+    titleForegroundColor: Color     = .primary,
+    captionForegroundColor: Color   = .secondary,
+    shadowColor: Color              = .clear,
+    shadowRadius: CGFloat           = 0.0,
+    borderColor: Color              = .clear,
+    borderWidth: CGFloat            = 0.0,
+    lineWidth: CGFloat              = 10.0,
+    imageViewSize: CGSize           = CGSize(width: 100, height: 100),
+    imageViewForegroundColor: Color = .primary,
+    successImage: String            = "checkmark.circle",
+    warningImage: String            = "exclamationmark.circle",
+    errorImage: String              = "xmark.circle",
+    shouldAutoHide: Bool            = false,
+    allowsTapToHide: Bool           = false,
+    autoHideInterval: TimeInterval  = 10.0,
+    hapticsEnabled: Bool            = true
 ){...}
 ```
 
