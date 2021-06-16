@@ -90,12 +90,14 @@ private struct LabelView: View {
                 Text(title)
                     .font(.system(size: 21.0, weight: .semibold))
                     .lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
                     .foregroundColor(.primary)
             }
             if let caption = caption {
                 Text(caption)
-                    .lineLimit(2)
                     .font(.headline)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: true, vertical: false)
                     .foregroundColor(.secondary)
             }
         }
