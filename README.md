@@ -56,6 +56,7 @@ public init(
     minSize: CGSize                 = CGSize(width: 100.0, height: 100.0),
     cornerRadius: CGFloat           = 12.0,
     backgroundColor: Color          = .clear,
+    foregroundColor: Color          = .systemBackground,
     titleForegroundColor: Color     = .primary,
     captionForegroundColor: Color   = .secondary,
     shadowColor: Color              = .clear,
