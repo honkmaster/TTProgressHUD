@@ -142,7 +142,7 @@ public struct TTProgressHUD: View {
                         .edgesIgnoringSafeArea(.all)
                     
                     ZStack {
-                        Color(.systemBackground)
+                        config.foregroundColor
                             .blurEffect()
                             .blurEffectStyle(config.blurEffectStyle)
                         
