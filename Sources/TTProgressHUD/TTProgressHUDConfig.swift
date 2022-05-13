@@ -12,7 +12,7 @@ public struct TTProgressHUDConfig: Hashable {
     var title: String?
     var caption: String?
 
-    var blurEffectStyle: UIBlurEffect.Style
+    var blurEffectStyle: UIBlurEffect.Style?
     
     var minSize: CGSize
     var cornerRadius: CGFloat
@@ -52,11 +52,11 @@ public struct TTProgressHUDConfig: Hashable {
         type: TTProgressHUDType         = .loading,
         title: String?                  = nil,
         caption: String?                = nil,
-        blurEffectStyle: UIBlurEffect.Style = .systemChromeMaterial,
+        blurEffectStyle: UIBlurEffect.Style? = .systemChromeMaterial,
         minSize: CGSize                 = CGSize(width: 100.0, height: 100.0),
         cornerRadius: CGFloat           = 12.0,
         backgroundColor: Color          = .clear,
-        foregroundColor: Color          = .systemBackground,
+        foregroundColor: Color          = Color(.systemBackground),
         titleForegroundColor: Color     = .primary,
         captionForegroundColor: Color   = .secondary,
         shadowColor: Color              = .clear,
@@ -109,5 +109,7 @@ public struct TTProgressHUDConfig: Hashable {
         self.autoHideInterval = autoHideInterval
 
         self.hapticsEnabled = hapticsEnabled
+        
+        self.foregroundColor = foregroundColor
     }
 }
