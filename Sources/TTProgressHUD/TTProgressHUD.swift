@@ -142,9 +142,13 @@ public struct TTProgressHUD: View {
                         .edgesIgnoringSafeArea(.all)
                     
                     ZStack {
-                        Color(.systemBackground)
-                            .blurEffect()
-                            .blurEffectStyle(config.blurEffectStyle)
+                        if let blurEffect = config.blurEffectStyle {
+                            config.foregroundColor
+                                .blurEffect()
+                                .blurEffectStyle(blurEffect)
+                        } else {
+                            config.foregroundColor
+                        }
                         
                         VStack(spacing: 20) {
                             if config.type == .loading {
